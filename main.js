@@ -1,5 +1,7 @@
 const P = new Pokedex.Pokedex()
 
+document.querySelector('#select-pokemon').addEventListener('change', getNewPokemon)
+
 function getNewPokemon(event) {
 
     P.getPokemonByName(event.target.value) // with Promise
