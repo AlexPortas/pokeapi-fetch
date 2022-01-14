@@ -19,6 +19,8 @@ function updatePokemon(response) {
            
 }
 
+document.querySelector('#.card-body .btn').addEventListener('change', changeToShiny)
+
 function changeToShiny() {
     let img = document.querySelector('.card-img-top')
     img.src = img.getAttribute('data-shiny-url')
