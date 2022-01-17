@@ -1,17 +1,21 @@
-const P = new Pokedex.Pokedex()
+let url;
 
-document.querySelector('#select-pokemon').addEventListener('change', getNewPokemon)
+document.querySelector('#select-pokemon').addEventListener('change', elegirPokemon)
 
-function getNewPokemon(event) {
-
-    P.getPokemonByName(event.target.value) // with Promise
-        .then(function (response) {
-            console.log(response)
-            updatePokemon(response)
-        })
+async function elegirPokemon() {
+    cambiarUrl();
+    let respuesta = await fetch(url);
+    let nArray = await respuesta.json()
+    actualizarPokemon(nArray);
 }
 
-function updatePokemon(response) {
+function cambiarUrl(){
+    url = "https://pokeapi.co/api/v2/pokemon/" ;
+    url = url + document.querySelector('#select-pokemon').value;
+    console.log(url);
+}
+
+function actualizarPokemon(response) {
     document.querySelector('.card-img-top').classList.remove('d-none')
     document.querySelector('.card-img-top').src = response.sprites.front_default
     document.querySelector('.card-img-top').setAttribute('data-shiny-url', response.sprites.front_shiny )
